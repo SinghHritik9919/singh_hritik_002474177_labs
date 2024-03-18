@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author LENOVO
+ * @author hriti
  */
 public class Business {
     
