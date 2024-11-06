@@ -1,0 +1,10 @@
+{
+	"name": "DAMG7370FALL24",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://stgdamgfall.dfs.core.windows.net/"
+		}
+	}
+}
