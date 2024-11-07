@@ -9,29 +9,29 @@
 		"type": "SnowflakeV2Table",
 		"schema": [
 			{
-				"name": "BREED_SK",
+				"name": "LOCATION_SK",
 				"type": "NUMBER",
 				"precision": 10,
 				"scale": 0
 			},
 			{
-				"name": "PRIMARY_BREED_NAME",
+				"name": "ZIP",
 				"type": "VARCHAR"
 			},
 			{
-				"name": "SECONDARY_BREED_NAME",
+				"name": "CITY",
 				"type": "VARCHAR"
 			},
 			{
-				"name": "SPECIES_NAME",
+				"name": "STATE",
 				"type": "VARCHAR"
 			},
 			{
-				"name": "DI_CREATED_DT",
+				"name": "DATE_TO_WAREHOUSE",
 				"type": "DATE"
 			},
 			{
-				"name": "DI_JOB_ID",
+				"name": "DI_JOBID",
 				"type": "VARCHAR"
 			}
 		],

@@ -1,0 +1,105 @@
+{
+	"name": "dataflow2_geo",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_spl_location",
+						"type": "DatasetReference"
+					},
+					"name": "source1geo"
+				},
+				{
+					"dataset": {
+						"referenceName": "SPLLocation",
+						"type": "DatasetReference"
+					},
+					"name": "geo"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SPLLocation",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "joingeo"
+				},
+				{
+					"name": "surrogateKey1"
+				},
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     DI_JOB_ID as string",
+				"}",
+				"source(output(",
+				"          state_fips as short,",
+				"          state as string,",
+				"          state_abbr as string,",
+				"          zipcode as string,",
+				"          county as string,",
+				"          city as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1geo",
+				"source(output(",
+				"          MAXLOCATIONSK as decimal(10,0)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     query: 'SELECT NVL(MAX(LOCATION_SK),0) as MaxLOCATIONSK FROM  DEV.LOCATION_DIM',",
+				"     format: 'query') ~> geo",
+				"source1geo, geo join(1==1,",
+				"     joinType:'cross',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joingeo",
+				"joingeo keyGenerate(output(rownum as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"surrogateKey1 derive(DI_JOB_ID = $DI_JOB_ID,",
+				"          DI_CREATED_DT = toString(currentDate(),'yyyy-MM-dd')\r",
+				" ,",
+				"          LocationSK = MAXLOCATIONSK+rownum) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     input(",
+				"          LOCATION_SK as string,",
+				"          ZIP as string,",
+				"          CITY as string,",
+				"          STATE as string,",
+				"          DATE_TO_WAREHOUSE as string,",
+				"          DI_JOBID as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     stageInsert: true,",
+				"     mapColumn(",
+				"          LOCATION_SK = LocationSK,",
+				"          ZIP = zipcode,",
+				"          CITY = city,",
+				"          STATE = state_abbr,",
+				"          DATE_TO_WAREHOUSE = DI_CREATED_DT,",
+				"          DI_JOBID = DI_JOB_ID",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
