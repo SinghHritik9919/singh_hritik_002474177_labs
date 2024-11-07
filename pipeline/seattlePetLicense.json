@@ -167,6 +167,13 @@
 									"value": "@pipeline().parameters.DI_JOB_ID",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "DI_CREATE_DT",
+								"value": {
+									"value": "@pipeline().parameters.DI_CREATE_DT",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
