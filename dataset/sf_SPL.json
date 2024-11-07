@@ -47,7 +47,7 @@
 		],
 		"typeProperties": {
 			"schema": "DEV",
-			"table": "PET_LICENSES_FACT"
+			"table": "STG_SEATTLEPETLICENSES"
 		}
 	}
 }
