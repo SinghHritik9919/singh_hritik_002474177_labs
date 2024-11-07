@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "raw2cleaned",
+				"name": "CopytoSilver",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
