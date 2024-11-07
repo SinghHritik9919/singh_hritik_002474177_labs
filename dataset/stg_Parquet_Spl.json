@@ -1,0 +1,19 @@
+{
+	"name": "stg_Parquet_Spl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DAMG7370FALL24",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
