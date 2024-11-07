@@ -163,7 +163,10 @@
 						"additionalColumns": [
 							{
 								"name": "DI_JOB_ID",
-								"value": ""
+								"value": {
+									"value": "@pipeline().parameters.DI_JOB_ID",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -292,8 +295,8 @@
 		],
 		"parameters": {
 			"DI_JOB_ID": {
-				"type": "int",
-				"defaultValue": 1
+				"type": "string",
+				"defaultValue": "1"
 			},
 			"DI_CREATE_DT": {
 				"type": "string",
