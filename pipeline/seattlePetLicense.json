@@ -159,9 +159,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SnowflakeV2Source",
-						"exportSettings": {
-							"type": "SnowflakeExportCopyCommand"
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "ParquetReadSettings"
 						}
 					},
 					"sink": {
@@ -255,7 +260,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "sf_SPL",
+						"referenceName": "Rd_Parquet",
 						"type": "DatasetReference"
 					}
 				],
