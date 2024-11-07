@@ -1,0 +1,23 @@
+{
+	"name": "ds_spl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DAMG7370FALL24",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Seattle_Pet_Licenses_20241007.tsv",
+				"fileSystem": "bronze"
+			},
+			"columnDelimiter": "\t",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
