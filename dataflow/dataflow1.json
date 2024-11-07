@@ -1,0 +1,33 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "sf_SPL",
+						"type": "DatasetReference"
+					},
+					"name": "sourceSnowFlakeStg"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          PET_LICENSE_SK as string,",
+				"          LICENSE_NUMBER as string,",
+				"          LICENSE_ISSUED_DATE_ID as string,",
+				"          BREED_DIM_ID as string,",
+				"          LOCATION_DIM_ID as string,",
+				"          DI_JOB_ID as string,",
+				"          DI_CREATED_DT as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     format: 'table') ~> sourceSnowFlakeStg"
+			]
+		}
+	}
+}
