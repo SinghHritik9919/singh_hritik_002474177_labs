@@ -171,7 +171,7 @@
 							{
 								"name": "DI_CREATE_DT",
 								"value": {
-									"value": "@pipeline().parameters.DI_CREATE_DT",
+									"value": "@utcNow()",
 									"type": "Expression"
 								}
 							}
@@ -312,10 +312,6 @@
 			"DI_JOB_ID": {
 				"type": "string",
 				"defaultValue": "\"1\""
-			},
-			"DI_CREATE_DT": {
-				"type": "string",
-				"defaultValue": "@utcNow()"
 			}
 		},
 		"annotations": []
